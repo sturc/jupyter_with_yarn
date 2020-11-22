@@ -1,0 +1,35 @@
+version: '3'
+services:
+  hadoop:
+    image: "harisekhon/hadoop"
+    container_name: "hadoop"
+    networks:
+      hadoop_cluster:
+        ipv4_address: "192.168.11.2"
+    ports:
+      - "8020:8020"
+      - "8042:8042"
+      - "8088:8088" 
+      - "9000:9000"
+      - "19888:19888" 
+      - "50070:50070" 
+      - "50075:50075"  
+    # stdin_open: true
+    # tty: true
+  jupyter:
+    image: "jupyter/pyspark-notebook:spark-3.0.1"
+    container_name: notebook
+    ports:
+      - "8888:8888" 
+    volumes:
+       - "/Users/sturm/Development/python/ds_bd_ss20/ds_bd:/home/jovyan/work"  
+    networks:
+      hadoop_cluster:
+        ipv4_address: "192.168.11.3"   
+networks:
+  hadoop_cluster:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet:  192.168.11.0/24
