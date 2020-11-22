@@ -82,7 +82,7 @@ EOF
 
     start-dfs.sh
     start-yarn.sh
-    if ! [ -f /hadoop-permission-init-done.txt] ; then
+    if ! [ -f /hadoop-permission-init-done.txt ] ; then
         export HADOOP_USER_NAME="root"
         hdfs dfs -chmod -R 777 /
         touch /hadoop-permission-init-done.txt
