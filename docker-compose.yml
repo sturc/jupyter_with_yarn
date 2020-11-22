@@ -1,7 +1,8 @@
-version: '3'
+version: "3"
 services:
   hadoop:
-    image: "harisekhon/hadoop"
+    build: ./hadoop
+    image: "hadoop:python3"
     container_name: "hadoop"
     networks:
       hadoop_cluster:
@@ -19,10 +20,13 @@ services:
   jupyter:
     image: "jupyter/pyspark-notebook:spark-3.0.1"
     container_name: notebook
+    environment:
+      - HADOOP_CONF_DIR=/home/jovyan/hadoop-configs/
     ports:
       - "8888:8888" 
     volumes:
        - "/Users/sturm/Development/python/ds_bd_ss20/ds_bd:/home/jovyan/work"  
+       - "/Users/sturm/Development/python/ds_bd_ss20/ds_bd/hadoop-configs:/home/jovyan/hadoop-configs"
     networks:
       hadoop_cluster:
         ipv4_address: "192.168.11.3"   
