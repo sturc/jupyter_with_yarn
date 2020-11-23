@@ -13,4 +13,8 @@
         <name>dfs.datanode.data.dir</name>
         <value>/dfs/data</value>
     </property>
+    <property>
+        <name>dfs.block.size</name>
+        <value>1m</value>
+    </property>
 </configuration>
