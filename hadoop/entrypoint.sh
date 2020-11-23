@@ -24,13 +24,17 @@ if [ $# -gt 0 ]; then
     exec "$@"
 else
     for x in root hdfs yarn; do
-        if ! [ -f "$x/.ssh/id_rsa" ]; then
+        HOME_DIR="/home/$x"
+        if [ "$x" == "root" ] ; then 
+            HOME_DIR="/root"
+        fi
+        if ! [ -f "$HOME_DIR/.ssh/id_rsa" ]; then
             su - "$x" <<-EOF
                 [ -n "${DEBUG:-}" ] && set -x
-                ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ""
+                ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -N '' -C ''
 EOF
         fi
-        if ! [ -f "$x/.ssh/authorized_keys" ]; then
+        if ! [ -f "HOME_DIR/.ssh/authorized_keys" ]; then
             su - "$x" <<-EOF
                 [ -n "${DEBUG:-}" ] && set -x
                 cp -v ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
