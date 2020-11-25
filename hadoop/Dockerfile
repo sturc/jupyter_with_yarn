@@ -57,6 +57,7 @@ RUN set -eux && \
     rm -rf /var/cache/yum
 
 # install python 
+COPY conf/requirements.txt /
 RUN set -eux && \
     wget -t 10 --max-redirect 1 --retry-connrefused -O "${PYTHON_TAR}" "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz" && \
     tar xvf "$PYTHON_TAR" && \
@@ -74,8 +75,9 @@ RUN set -eux && \
 	ln -s "idle${PYTHON_MAIN_VERSION}" idle && \
 	ln -s "pydoc${PYTHON_MAIN_VERSION}" pydoc && \
 	ln -s "python${PYTHON_MAIN_VERSION}" python && \
-	ln -s "python${PYTHON_MAIN_VERSION}-config" python-config &&\
-    ln -s "pip${PYTHON_MAIN_VERSION}" pip 
+	ln -s "python${PYTHON_MAIN_VERSION}-config" python-config && \
+    ln -s "pip${PYTHON_MAIN_VERSION}" pip && \
+    pip install -r /requirements.txt
 
 
 COPY entrypoint.sh /
