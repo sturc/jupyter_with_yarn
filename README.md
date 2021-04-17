@@ -6,11 +6,18 @@ The Hadoop image is based on `https://hub.docker.com/r/harisekhon/hadoop`.
 
 As Jupyter Notebook the pyspark notebook is used `https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook`.
 
-Both containers are connected via a bridge network. 
+Both containers are connected via a bridge network.
 
-## Start them with:
+## Start, Stop, Delete
 
+Start the Jupyter Notebook and the Hadoop Cluster by executing:
 `docker-compose up`
+
+Stop the Jupter Notebook with:
+`docker-compose stop`
+
+Delete the Containers with:
+`docker-compose down`
 
 ## Login to Jupyter
 
