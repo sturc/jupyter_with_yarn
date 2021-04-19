@@ -3,4 +3,6 @@
 
 # Declare files that will always have CRLF line endings on checkout.
 *.cnf text eol=lf
+*.sh text eol=lf
+
 
