@@ -34,9 +34,9 @@ services:
     ports:
       - "8888:8888"
     volumes:
-       - "/Users/sturm/Development/python/ds_bd_ss20/ds_bd:/home/jovyan/work"  
-       - "/Users/sturm/Development/python/ds_bd_ss20/ds_bd/hadoop-configs:/home/jovyan/hadoop-configs"
-       - "/Users/sturm/Development/jupyter_with_yarn/pyspark-notebook/before-notebook:/usr/local/bin/before-notebook.d/"
+       - C:\Users\sturm\ds_bd:/home/jovyan/work  
+       - C:\Users\sturm\ds_bd\hadoop-configs:/home/jovyan/hadoop-configs
+       - C:\Users\sturm\jupyter_with_yarn\pyspark-notebook\before-notebook:/usr/local/bin/before-notebook.d/
     networks:
       hadoop_cluster:
         ipv4_address: "192.168.11.3"   
