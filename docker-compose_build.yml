@@ -1,6 +1,7 @@
 version: "3"
 services:
   hadoop:
+    build: ./hadoop
     image: "csturm/hadoop-python:summer-term-2021"
     container_name: "hadoop"
     networks:
@@ -17,6 +18,14 @@ services:
     # stdin_open: true
     # tty: true
   jupyter:
+    build: 
+      context: https://github.com/jupyter/docker-stacks.git#0f2a7473c41f2c865e836d70f8ff8c9c7b7ed28c:pyspark-notebook
+      args:
+      - spark_version=3.1.1
+      - hadoop_version=2.7
+      - spark_checksum=5C773553B785B16237DFBE7A39F34BEA6BF1D4E10E520BD27D55B2767E2883DE5A06ACF33447E571570A2D3CC34B5094F15D17BEF81A2AB16080A64F3AB34A0B
+      - openjdk_version=8 
+      - py4j_version=0.10.9
     image: "csturm/pyspark-notebook:summer-term-2021"
     container_name: "notebook"
     environment:
