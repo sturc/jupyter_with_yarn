@@ -26,8 +26,8 @@ services:
     ports:
       - "8888:8888"
     volumes:
-       - "${DS_DB_DIR}:/home/jovyan/work"  
-       - "${DS_DB_DIR}/hadoop-configs:/home/jovyan/hadoop-configs"
+       - "${DS_BD_DIR}:/home/jovyan/work"  
+       - "${DS_BD_DIR}/hadoop-configs:/home/jovyan/hadoop-configs"
        - "./pyspark-notebook/before-notebook:/usr/local/bin/before-notebook.d/"
     networks:
       hadoop_cluster:
