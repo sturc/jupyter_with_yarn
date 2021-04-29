@@ -19,7 +19,7 @@ services:
     # tty: true
   jupyter:
     build: 
-      context: https://github.com/jupyter/docker-stacks.git#0f2a7473c41f2c865e836d70f8ff8c9c7b7ed28c:pyspark-notebook
+      context:  #0f2a7473c41f2c865e836d70f8ff8c9c7b7ed28c:pyspark-notebook
       args:
       - spark_version=3.1.1
       - hadoop_version=2.7
@@ -31,6 +31,7 @@ services:
     environment:
       - HADOOP_CONF_DIR=/home/jovyan/hadoop-configs/
       - DOCKER_BUILDKIT=0
+      - JUPYTER_ENABLE_LAB=yes
     ports:
       - "8888:8888"
     volumes:
