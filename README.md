@@ -21,6 +21,12 @@ Delete the Containers with:
 
 ## Login to Jupyter
 
-Execute `docker exec -it notebook jupyter notebook list` to display the required login token.
+Execute one of the following commands to display the required login token: 
+
+For the traditional Jupyter Server:
+`docker exec -it notebook jupyter notebook list`
+
+For the Jupyter Lab Server:
+`docker exec -it notebook jupyter server list`
 
 The notebook is reachable with `http://localhost:8888`.
