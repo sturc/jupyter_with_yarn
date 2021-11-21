@@ -1,23 +1,21 @@
 #
-#  Author: Hari Sekhon
-#  Date: 2016-04-24 21:18:57 +0100 (Sun, 24 Apr 2016)
+#  Author: Christoph Sturm
 #
-#  vim:ts=4:sts=4:sw=4:et
 #
-#  https://github.com/harisekhon/Dockerfiles
+#  https://github.com/sturc/jupyter_with_yarn
 #
-#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback
-#
-#  https://www.linkedin.com/in/harisekhon
 #
 
-FROM harisekhon/centos-java:latest
+FROM centos:latest
+
+ARG JAVA_VERSION=8
+ARG JAVA_RELEASE=JDK
 
 ARG HADOOP_VERSION=2.8.2
 
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
-ARG PYTHON_VERSION=3.8.6
+ARG PYTHON_VERSION=3.8.12
 ARG PYTHON_SHORT_VERSION=3.8
 ARG PYTHON_MAIN_VERSION=3
 
@@ -25,10 +23,25 @@ ARG PYTHON_TAR=Python-${PYTHON_VERSION}.tgz
 
 ENV PATH $PATH:/hadoop/bin
 
-LABEL Description="Hadoop Dev" \
+LABEL Description="Hadoop Node" \
       "Hadoop Version"="$HADOOP_VERSION"
 
 WORKDIR /
+
+RUN set -eux && \
+    pkg="java-1.$JAVA_VERSION.0-openjdk" && \
+    if [ "$JAVA_RELEASE" = "JDK" ]; then \
+        pkg="$pkg-devel"; \
+    else \
+        pkg="$pkg-headless"; \
+    fi; \
+    yum install -y "$pkg" && \
+    yum clean all && \
+    rm -rf /var/cache/yum
+
+COPY profile.d/java.sh /etc/profile.d/
+
+ENV JAVA_HOME=/usr
 
 RUN set -eux && \
     yum -y update && \ 

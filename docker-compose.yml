@@ -1,7 +1,7 @@
 version: "3"
 services:
   hadoop:
-    image: "csturm/hadoop-python:winter-term-2021"
+    image: "csturm/hadoop-python:winter-term-2021newCentOS"
     container_name: "hadoop"
     networks:
       hadoop_cluster:
