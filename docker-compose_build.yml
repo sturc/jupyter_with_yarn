@@ -15,33 +15,33 @@ services:
       - "19888:19888" 
       - "50070:50070" 
       - "50075:50075"  
-    # stdin_open: true
-    # tty: true
-  # jupyter:
-  #   build: 
-  #     context: "https://github.com/jupyter/docker-stacks.git#master:pyspark-notebook"
-  #     dockerfile: ./Dockerfile
-  #     args:
-  #     - spark_version=3.1.2
-  #     - hadoop_version=2.7
-  #     - spark_checksum=BA47E074B2A641B23EE900D4E28260BAA250E2410859D481B38F2EAD888C30DAEA3683F505608870148CF40F76C357222A2773F1471E7342C622E93BF02479B7
-  #     - openjdk_version=8 
-  #     - py4j_version=0.10.9
-  #   image: "csturm/pyspark-notebook:winter-term-2021newCentOS"
-  #   container_name: "notebook"
-  #   environment:
-  #     - HADOOP_CONF_DIR=/home/jovyan/hadoop-configs/
-  #     - DOCKER_BUILDKIT=0
-  #     - JUPYTER_ENABLE_LAB=yes
-  #   ports:
-  #     - "8888:8888"
-  #   volumes:
-  #      - "/Users/sturm/Development/python/ds_bd_ss20/ds_bd:/home/jovyan/work"  
-  #      - "/Users/sturm/Development/python/ds_bd_ss20/ds_bd/hadoop-configs:/home/jovyan/hadoop-configs"
-  #      - "/Users/sturm/Development/jupyter_with_yarn/pyspark-notebook/before-notebook:/usr/local/bin/before-notebook.d/"
-  #   networks:
-  #     hadoop_cluster:
-  #       ipv4_address: "192.168.11.3"   
+#    stdin_open: true
+#    tty: true
+# jupyter:
+#   build: 
+#     context: "https://github.com/jupyter/docker-stacks.git#master:pyspark-notebook"
+#     dockerfile: ./Dockerfile
+#     args:
+#     - spark_version=3.1.2
+#     - hadoop_version=2.7
+#     - spark_checksum=BA47E074B2A641B23EE900D4E28260BAA250E2410859D481B38F2EAD888C30DAEA3683F505608870148CF40F76C357222A2773F1471E7342C622E93BF02479B7
+#     - openjdk_version=8 
+#     - py4j_version=0.10.9
+#   image: "csturm/pyspark-notebook:winter-term-2021newCentOS"
+#   container_name: "notebook"
+#   environment:
+#     - HADOOP_CONF_DIR=/home/jovyan/hadoop-configs/
+#     - DOCKER_BUILDKIT=0
+#     - JUPYTER_ENABLE_LAB=yes
+#   ports:
+#     - "8888:8888"
+#   volumes:
+#      - "/Users/sturm/Development/python/ds_bd_ss20/ds_bd:/home/jovyan/work"  
+#      - "/Users/sturm/Development/python/ds_bd_ss20/ds_bd/hadoop-configs:/home/jovyan/hadoop-configs"
+#      - "/Users/sturm/Development/jupyter_with_yarn/pyspark-notebook/before-notebook:/usr/local/bin/before-notebook.d/"
+#   networks:
+#     hadoop_cluster:
+#       ipv4_address: "192.168.11.3"   
 networks:
   hadoop_cluster:
     driver: bridge
