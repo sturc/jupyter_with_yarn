@@ -7,8 +7,8 @@
 #
 
 FROM centos:latest
-
-ARG JAVA_VERSION=8
+#FROM quay.io/centos/centos:stream9
+ARG JAVA_VERSION=11
 ARG JAVA_RELEASE=JDK
 
 ARG HADOOP_VERSION=2.10.1
@@ -29,7 +29,7 @@ LABEL Description="Hadoop Node" \
 WORKDIR /
 
 RUN set -eux && \
-    pkg="java-1.$JAVA_VERSION.0-openjdk" && \
+    pkg="java-$JAVA_VERSION-openjdk" && \
     if [ "$JAVA_RELEASE" = "JDK" ]; then \
         pkg="$pkg-devel"; \
     else \
