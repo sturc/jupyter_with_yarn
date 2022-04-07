@@ -17,7 +17,7 @@ services:
     # stdin_open: true
     # tty: true
   jupyter:
-    image: "csturm/pyspark-notebook:summer-term-2022"
+    image: "csturm/pyspark-notebook:spark3.2.1_java11"
     container_name: "notebook"
     environment:
       - HADOOP_CONF_DIR=/home/jovyan/hadoop-configs/
