@@ -2,7 +2,7 @@ version: "3"
 services:
   hadoop:
     build: ./hadoop
-    image: "csturm/hadoop-python:winter-term-2021java11"
+    image: "csturm/hadoop-python:h2.10-p3.9.10-j11"
     container_name: "hadoop"
     networks:
       hadoop_cluster:

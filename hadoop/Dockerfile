@@ -6,8 +6,8 @@
 #
 #
 
-FROM centos:latest
-#FROM quay.io/centos/centos:stream9
+#FROM centos:latest
+FROM quay.io/centos/centos:stream9
 ARG JAVA_VERSION=11
 ARG JAVA_RELEASE=JDK
 
@@ -15,9 +15,9 @@ ARG HADOOP_VERSION=2.10.1
 
 ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 
-ARG PYTHON_VERSION=3.8.12
-ARG PYTHON_SHORT_VERSION=3.8
-ARG PYTHON_MAIN_VERSION=3
+#ARG PYTHON_VERSION=3.9.10
+#ARG PYTHON_SHORT_VERSION=3.8
+#ARG PYTHON_MAIN_VERSION=3
 
 ARG PYTHON_TAR=Python-${PYTHON_VERSION}.tgz
 
@@ -72,25 +72,11 @@ RUN set -eux && \
 # install python 
 COPY conf/requirements.txt /
 RUN set -eux && \
-    wget -t 10 --max-redirect 1 --retry-connrefused -O "${PYTHON_TAR}" "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz" && \
-    tar xvf "$PYTHON_TAR" && \
-    rm "$PYTHON_TAR" && \
-    cd "Python-${PYTHON_VERSION}" && \
-    ./configure --enable-optimizations && \
-    make altinstall && \
-    rm -r "../Python-${PYTHON_VERSION}" && \
-    cd /usr/local/bin && \
-    ln -s "idle${PYTHON_SHORT_VERSION}" "idle${PYTHON_MAIN_VERSION}" && \
-	ln -s "pydoc${PYTHON_SHORT_VERSION}" "pydoc${PYTHON_MAIN_VERSION}" && \
-	ln -s "python${PYTHON_SHORT_VERSION}" "python${PYTHON_MAIN_VERSION}" && \
-	ln -s "python${PYTHON_SHORT_VERSION}-config" "python${PYTHON_MAIN_VERSION}-config" &&\
-    ln -s "pip${PYTHON_SHORT_VERSION}" "pip${PYTHON_MAIN_VERSION}" && \
-	ln -s "idle${PYTHON_MAIN_VERSION}" idle && \
-	ln -s "pydoc${PYTHON_MAIN_VERSION}" pydoc && \
-	ln -s "python${PYTHON_MAIN_VERSION}" python && \
-	ln -s "python${PYTHON_MAIN_VERSION}-config" python-config && \
-    ln -s "pip${PYTHON_MAIN_VERSION}" pip && \
-    pip install -r /requirements.txt
+    yum install python3 -y && \
+    yum install python3-pip -y && \
+    pip install -r /requirements.txt && \
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 
 COPY entrypoint.sh /
