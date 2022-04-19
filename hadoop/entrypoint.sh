@@ -16,7 +16,7 @@
 set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 
-export JAVA_HOME="${JAVA_HOME:-/usr}"
+export JAVA_HOME="$(dirname $(dirname $(readlink $(readlink $(which javac)))))"
 
 export PATH="$PATH:/hadoop/sbin:/hadoop/bin"
 
@@ -86,12 +86,13 @@ EOF
 
     start-dfs.sh
     start-yarn.sh
+    echo "hadoop started"
     if ! [ -f /hadoop-permission-init-done.txt ] ; then
         export HADOOP_USER_NAME="root"
         hdfs dfs -chmod -R 777 /
         touch /hadoop-permission-init-done.txt
     fi
-    tail -f /dev/null /hadoop/logs/*
+    tail -f /dev/null /hadoop/logs/*.log
     stop-yarn.sh
     stop-dfs.sh
 fi
