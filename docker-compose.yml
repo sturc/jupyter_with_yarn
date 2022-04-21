@@ -21,7 +21,7 @@ services:
     # stdin_open: true
     # tty: true
   jupyter:
-    image: "jupyter/pyspark-notebook:spark-3.2.1"
+    image: "csturm/pyspark-notebook:spark3.2.1_hadoop_3.2_java11"
     container_name: "notebook"
     environment:
       - HADOOP_CONF_DIR=/home/jovyan/hadoop-configs/
