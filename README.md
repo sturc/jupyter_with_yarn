@@ -4,7 +4,7 @@ Combines a Jupyter Notebook with an Hadoop / Yarn Container.
 
 The Hadoop image is based on `https://hub.docker.com/r/harisekhon/hadoop`.
 
-As Jupyter Notebook the pyspark notebook is used `https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook`.
+As Jupyter Notebook the pyspark notebook is used `https://github.com/jupyter/docker-stacks/tree/main/images/pyspark-notebook`. Images are hosted on `https://quay.io/repository/jupyter/pyspark-notebook`
 
 Both containers are connected via a bridge network.
 
