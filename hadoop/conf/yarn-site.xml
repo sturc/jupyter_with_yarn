@@ -33,4 +33,8 @@
         <name>yarn.scheduler.maximum-allocation-mb</name>
         <value>4096</value>
     </property>
+    <property>
+        <name>yarn.application.classpath</name>
+        <value>/hadoop/etc/hadoop:/hadoop/share/hadoop/common/lib/*:/hadoop/share/hadoop/common/*:/hadoop/share/hadoop/hdfs:/hadoop/share/hadoop/hdfs/lib/*:/hadoop/share/hadoop/hdfs/*:/hadoop/share/hadoop/mapreduce/*:/hadoop/share/hadoop/yarn:/hadoop/share/hadoop/yarn/lib/*:/hadoop/share/hadoop/yarn/*</value>
+    </property>
 </configuration>

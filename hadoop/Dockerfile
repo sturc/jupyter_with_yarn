@@ -20,7 +20,7 @@ ARG TAR=hadoop-$HADOOP_VERSION.tar.gz
 #ARG PYTHON_MAIN_VERSION=3
 #ARG PYTHON_TAR=Python-${PYTHON_VERSION}.tgz
 
-ENV PATH $PATH:/hadoop/bin
+ENV PATH=$PATH:/hadoop/bin
 
 LABEL Description="Hadoop Node" \
       "Hadoop Version"="$HADOOP_VERSION"
